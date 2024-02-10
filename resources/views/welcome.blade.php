@@ -38,8 +38,7 @@
         <div class="flex justify-center">
             <img src="/img/logo.jpeg" alt="logo">
         </div>
-        <h2 class="m-5 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl text-center">Прототип формы
-            анкеты</h2>
+
         <livewire:create-worksheet/>
     </div>
 </div>
