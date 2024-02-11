@@ -23,8 +23,8 @@ services:
     db:
         image: mysql:8.0
         restart: always
-        volumes:
-            - ./tmp/db:/var/lib/mysql
+#        volumes:
+#            - ./tmp/db:/var/lib/mysql
         environment:
             MYSQL_DATABASE: tdkomplekt_db
             MYSQL_ROOT_PASSWORD: root
@@ -32,8 +32,3 @@ services:
             - 8101:3306
         command: mysqld --character-set-server=utf8 --collation-server=utf8_unicode_ci
         container_name: tdkomplekt_db
-
-
-
-
-
