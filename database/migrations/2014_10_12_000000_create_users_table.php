@@ -20,7 +20,7 @@ return new class extends Migration
             $table->date('date_of_birth');
 
             $table->string('email')->nullable();
-            $table->string('phone')->nullable();
+            $table->json('phone')->nullable();
 
             $table->tinyInteger('marital_status')->nullable();
             $table->text('about_yourself')->nullable();

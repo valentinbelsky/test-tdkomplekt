@@ -1,5 +1,5 @@
 <div>
-{{--    {{dd($userData['phone'])}}--}}
+    {{--    {{dd($userData['phone'])}}--}}
     @if(!$success)
         <h2 class="m-5 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl text-center">Прототип формы
             анкеты</h2>
@@ -39,13 +39,30 @@
 
                 <div class="sm:col-span-3">
                     <x-label for="phone">Телефон</x-label>
-                    @foreach($userData['phone'] as $key_index => $phone)
+                    @foreach($userData['phone'] as $key_index => $phones)
                         <div class="flex">
-                            <button wire:click="addPhone({{$key_index}})" class="mt-2 mr-2 h-fit px-2 py-2 text-xs font-medium text-center inline-flex items-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                            <a wire:click="addPhone({{$key_index}})"
+                               class="mt-2 mr-2 h-fit h-[36px] px-3 py-2 text-xs font-medium text-center inline-flex items-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                                 +
-                            </button>
-                            <x-tel-input wireName="userData.phone.{{$key_index}}" name="phone" autocomplete="tel"/>
+                            </a>
+                            <div class="relative mt-2">
+                                <div class="absolute inset-y-0 left-0 flex items-center">
+                                    <x-tel-select wireName="userData.phone.{{$key_index}}.country" name="country">
+                                        @foreach($countries as $country )
+                                            <option value="{{$country}}">{{$country}}</option>
+                                        @endforeach
+                                    </x-tel-select>
+                                </div>
+
+                                <x-tel-input wireName="userData.phone.{{$key_index}}.number" name="phone"
+                                             autocomplete="tel"/>
+                            </div>
+
+
                         </div>
+                        @error('userData.phone.'.$key_index.'.number')
+                        <p class="text-red-500 text-xs">{{ $message }}</p>
+                        @enderror
 
                     @endforeach
 
@@ -84,7 +101,11 @@
                 <div class="col-span-full">
                     <label for="cover-files" class="block text-sm font-medium leading-6 text-gray-900">Добавить
                         файлы</label>
-                    <div class="mt-2 flex justify-center rounded-lg border border-dashed border-gray-900/25 px-6 py-10">
+                    @php
+                        $errorClassBorder = $errors->has('userFilesUpload') ? 'border-red-500' : 'border-dashed'
+                    @endphp
+                    <div
+                        class="mt-2 flex justify-center rounded-lg border {{$errorClassBorder}} border-gray-900/25 px-6 py-10">
                         <div class="text-center">
                             <svg class="mx-auto h-12 w-12 text-gray-300" viewBox="0 0 24 24" fill="currentColor"
                                  aria-hidden="true">
@@ -107,8 +128,9 @@
                             </div>
                         </div>
                     </div>
-                    @error('userFilesUpload') <span class="">{{ $message }}</span> @enderror
-                    @error('userFilesUpload.*') <span class="">{{ $message }}</span> @enderror
+
+                    @error('userFilesUpload') <span class="text-red-500 text-xs">{{ $message }}</span> @enderror
+                    @error('userFilesUpload.*') <span class="text-red-500 text-xs">{{ $message }}</span> @enderror
                 </div>
 
             </div>
