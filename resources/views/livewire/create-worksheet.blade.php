@@ -9,7 +9,7 @@
             <div class="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
                 <div class="sm:col-span-2">
                     <x-label for="surname">Фамилия</x-label>
-                    <x-input wireName="userData.surname" name="surname" maxlength="20" autocomplete="surname"/>
+                    <x-input wireName="userData.surname" name="surname" maxlength="20" autocomplete="surname" required/>
                 </div>
                 <div class="sm:col-span-2">
                     <x-label for="name">Имя</x-label>

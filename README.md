@@ -31,4 +31,13 @@
 ----
 
 
-Запуск 
+## Запуск без Docker'a
+
+        npm install
+        composer install
+        php artisan serve
+        php artisan key:generate
+        php artisan migrate
+        php artisan storage:link
+
+        (vite)
