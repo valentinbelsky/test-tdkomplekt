@@ -4,7 +4,6 @@
 
 ### 1 - Открыть Docker
 ### 2 - Переименовать .env.example-docker в .env
-### 3
         docker-compose up -d
 ----
 
